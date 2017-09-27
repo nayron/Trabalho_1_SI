@@ -14,6 +14,8 @@ class cliente2 {
         DataInputStream sIn;
 
         Scanner entrada = new Scanner(System.in);
+        
+        do{
 
         try {
 
@@ -34,20 +36,26 @@ class cliente2 {
             sOut.writeInt(qtdade);
 
             c = sIn.readInt();
+            System.out.println("valor de C = " + c);
 
-            if (c < 0) {
+            if (c < 0) {//Quantidade negativa..(indisponibilidade do produto
                 ss = sIn.readUTF();
                 System.out.println(ss);
-            } else if (c >= 0) {
+            } else if (c >= 0 && c<=2000) {//atualização de estoque(entrada e retirada)
 
-                System.out.println("estoque atualizado e quantidade de  = " + c);
+               System.out.println("estoque atualizado e quantidade de  = " + c);
 
+            }else if(c>=2001){//para no caso for inserido novo produto
+                ss = sIn.readUTF();
+                System.out.println(ss);
             }
 
             s.close();
         } catch (IOException e) {
             System.out.println(e);
         }
-
+        System.out.println("Deseja continuar? 1-p/ Sim ou 0-p/ não");
+        op = entrada.nextInt();
+        }while(op != 0 );
     }
 }
